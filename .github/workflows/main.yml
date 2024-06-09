@@ -42,6 +42,9 @@ jobs:
 
     - name: Set up Azure CLI
       uses: azure/cli@v1
+      with:
+        inlineScript: az aks get-credentials --resource-group hello-rg --name helloCluster
+
 
     - name: AKS Login
       run: az aks get-credentials --resource-group hello-rg --name helloCluster
