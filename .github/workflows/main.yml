@@ -24,14 +24,14 @@ jobs:
     - name: Log in to ACR
       uses: azure/docker-login@v1
       with:
-        login-server: myacrregistry.azurecr.io
+        login-server: mdhelloacr.azurecr.io
         username: ${{ secrets.AZURE_ACR_USERNAME }}
         password: ${{ secrets.AZURE_ACR_PASSWORD }}
 
     - name: Build and push Docker image
       run: |
-        docker build . -t myacrregistry.azurecr.io/hello-interswitch:latest
-        docker push myacrregistry.azurecr.io/hello-interswitch:latest
+        docker build . -t mdhelloacr.azurecr.io/hello-interswitch:latest
+        docker push mdhelloacr.azurecr.io/hello-interswitch:latest
 
   deploy:
     needs: build
@@ -44,7 +44,7 @@ jobs:
       uses: azure/cli@v1
 
     - name: AKS Login
-      run: az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+      run: az aks get-credentials --resource-group hello-rg --name helloCluster
 
     - name: Deploy to AKS
       run: |
