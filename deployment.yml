@@ -17,8 +17,6 @@ spec:
         image: mdhelloacr/hello-interswitch:latest
         ports:
         - containerPort: 8080
-      imagePullSecrets:
-      - name: acr-secret
 ---
 apiVersion: v1
 kind: Service
